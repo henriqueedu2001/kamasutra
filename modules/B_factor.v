@@ -1,13 +1,13 @@
+/* fator B do karatsuba
+   recebe fatores X e Y em 8 bits
+   retorna fator B em 10 bits
+*/
 module B_factor (X, Y, B);
-	input [7:0] X;
-	input [7:0] Y;
-	output [9:0] B;
-	
-	wire [3:0] Xhigh;
-	wire [3:0] Yhigh;
+	input [7:0] X; // fator X da multiplicação (8 bits)
+	input [7:0] Y; // fator Y da multiplicação (8 bits)
+	output [9:0] B; // fator B do karatsuba (10 bits)
 
-	higher Higher_X (X, Xhigh);
-	higher Higher_Y (Y, Yhigh);
-	ROM rom ({1'b0, Xhigh, 1'b0, Yhigh}, B);
+	// acessa a memória rom para calcular Xhigh*Yhigh
+	ROM rom ({1'b0, X[7:4], 1'b0, Y[7:4]}, B);
 
 endmodule

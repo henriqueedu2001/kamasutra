@@ -1,13 +1,12 @@
+/* fator E do karatsuba
+   recebe fator Y em 8 bits
+   retorna fator E em 5 bits
+*/
 module E_factor (Y, E);
-	input [7:0] Y;
-	output [4:0] E;
-	
-	wire [3:0] Yhigh;
-	wire [3:0] Ylow;
+	input [7:0] Y; // fator Y (8 bits)
+	output [4:0] E; // fator E (5 bits)
 
-	higher Higher_Y (Y, Yhigh);
-	lower Lower_Y (Y, Ylow);
-
-    assign E = Yhigh + Ylow;
+    // executa a soma Yhigh + Ylow
+    assign E = Y[7:4] + Y[3:0];
 
 endmodule

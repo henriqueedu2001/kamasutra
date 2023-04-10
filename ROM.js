@@ -18,11 +18,11 @@ end
 
 endmodule`
 
-fs.writeFile("rom_data.v", data, (err) => {
+fs.writeFile("rom.v", data, (err) => {
     if (err)
         console.log(err);
     else {
-        console.log(fs.readFileSync("rom_data.v", "utf8"));
+        console.log(fs.readFileSync("rom.v", "utf8"));
   }
 });
 
