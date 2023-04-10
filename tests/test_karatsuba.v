@@ -17,7 +17,7 @@ module test_karatsuba;
 	initial begin
 		X = 8'b00010001;
         Y = 8'b00010001;
-		$monitor ("X = %B; Y = %B; X*Y = %B", X, Y, Z);
+		$monitor ("X = %D; Y = %D; X*Y = %D", X, Y, Z);
 		#100;
 	end
 endmodule
