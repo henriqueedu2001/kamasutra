@@ -3,7 +3,7 @@
 module A_test;
 	reg [7:0] X;
     reg [7:0] Y;
-	wire [7:0] A;
+	wire [9:0] A;
 	
 	A_factor uut (
 		.X(X),
@@ -13,7 +13,7 @@ module A_test;
 	
 	initial begin
         X = 8'b01100101;
-        Y = 8'b00000101;
+        Y = 8'b01100101;
         $monitor (A);
         #100;
     end

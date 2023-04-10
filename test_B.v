@@ -3,7 +3,7 @@
 module B_test;
 	reg [7:0] X;
     reg [7:0] Y;
-	wire [7:0] B;
+	wire [9:0] B;
 	
 	B_factor uut (
 		.X(X),
