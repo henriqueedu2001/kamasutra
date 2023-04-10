@@ -1,41 +1,41 @@
 # ROM
 ```
-iverilog -o rom rom.v test_rom.v
+iverilog -o rom modules/rom.v tests/test_rom.v
 vvp rom
 ```
 
 # A
 ```
-iverilog -o A A_factor.v rom.v lower.v test_A.v
+iverilog -o A modules/A_factor.v modules/rom.v modules/lower.v tests/test_A.v
 vvp A
 ```
 
 # B
 ```
-iverilog -o B B_factor.v rom.v higher.v test_B.v
+iverilog -o B modules/B_factor.v modules/rom.v modules/higher.v tests/test_B.v
 vvp B
 ```
 
 # D
 ```
-iverilog -o D D_factor.v rom.v lower.v higher.v test_D.v
+iverilog -o D modules/D_factor.v modules/rom.v modules/lower.v modules/higher.v tests/test_D.v
 vvp D
 ```
 
 # E
 ```
-iverilog -o E E_factor.v rom.v lower.v higher.v test_E.v
+iverilog -o E modules/E_factor.v modules/rom.v modules/lower.v modules/higher.v tests/test_E.v
 vvp E
 ```
 
 # LOWER
 ```
-iverilog -o lower lower.v test_lower.v
+iverilog -o lower modules/lower.v tests/test_lower.v
 vvp lower
 ```
 
 # HIGHER
 ```
-iverilog -o higher higher.v test_higher.v
+iverilog -o higher modules/higher.v tests/test_higher.v
 vvp higher
 ```
