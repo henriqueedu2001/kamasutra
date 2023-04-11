@@ -3,6 +3,9 @@
 iverilog -o karatsuba modules/rom.v modules/A_factor.v modules/B_factor.v modules/D_factor.v modules/E_factor.v modules/karatsuba.v tests/test_karatsuba.v
 vvp karatsuba
 ```
+# FSM_EXC
+iverilog -o fsm_exc modules/FSM_EXC.v tests/test_FSM_EXC.v
+vvp fsm_exc
 
 # ROM
 ```

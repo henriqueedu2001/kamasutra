@@ -7,3 +7,4 @@ lower
 rom
 rom_data.v
 karatsuba
+fsm
