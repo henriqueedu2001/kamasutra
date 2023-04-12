@@ -33,3 +33,9 @@ vvp D
 iverilog -o E modules/E_factor.v modules/rom.v tests/test_E.v
 vvp E
 ```
+
+# MultSignal
+```
+iverilog -o mult_signal /modules/MULT_SIGNAL.v /tests/test_MULT_SIGNAL.v
+vvp mult_signal
+```
