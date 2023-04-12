@@ -22,10 +22,10 @@ module karatsuba(X, Y, Z);
     ROM DE_prod ({D, E}, DE);
 
     //assign Z = { 6'b000000, A};
-    //assign Z = {B[7:0], 8'b00000000};
+    //assign Z = {B, 8'b00000000};
     //assign Z = { 6'b000000, A} + {B[7:0], 8'b00000000};
-    //assign Z = { 6'b000000, DE};
-    //assign Z = {6'b000000, DE - (A+B)};
-    assign Z = { 6'b000000, A} + {B[7:0], 8'b00000000} + {6'b000000, DE - (A+B)};
+    //assign Z = { 6'b000000, DE}; 
+    //assign Z = {DE - (A+B), 4'b0000};
+    assign Z = {A} + {B, 8'b00000000} + {DE - (A+B), 4'b0000};
 
 endmodule
