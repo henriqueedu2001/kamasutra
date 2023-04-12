@@ -1,6 +1,6 @@
 # KARATSUBA
 ```
-iverilog -o karatsuba modules/rom.v modules/A_factor.v modules/B_factor.v modules/D_factor.v modules/E_factor.v modules/karatsuba.v tests/test_karatsuba.v
+iverilog -o karatsuba modules/rom.v modules/A_factor.v modules/B_factor.v modules/D_factor.v modules/E_factor.v modules/abs.v modules/MULT_SIGNAL.v  modules/karatsuba.v tests/test_karatsuba.v
 vvp karatsuba
 ```
 

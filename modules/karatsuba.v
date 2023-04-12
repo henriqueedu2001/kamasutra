@@ -12,6 +12,8 @@ module karatsuba(X, Y, Z);
     wire [4:0] E; // fator E do karatsuba
 
     wire [9:0] DE; // produto D*E (10 bits)
+    wire [15:0] XY_abs;
+    wire XY_signal;
     
     // atribuição dos valores aos fios de A, B, D e E
     A_factor A_fac (X, Y, A);
@@ -21,11 +23,11 @@ module karatsuba(X, Y, Z);
     
     ROM DE_prod ({D, E}, DE);
 
-    //assign Z = { 6'b000000, A};
-    //assign Z = {B, 8'b00000000};
-    //assign Z = { 6'b000000, A} + {B[7:0], 8'b00000000};
-    //assign Z = { 6'b000000, DE}; 
-    //assign Z = {DE - (A+B), 4'b0000};
-    assign Z = {A} + {B, 8'b00000000} + {DE - (A+B), 4'b0000};
+    //calcula o sinal final da multiplicação
+    ABS abs_XY(X, Y);
+    MULT_SIGNAL mult_sig(X[7], Y[7], XY_signal);
+
+    assign XY_abs = {A} + {B, 8'b00000000} + {DE - (A+B), 4'b0000};
+    assign Z = XY_abs;
 
 endmodule
