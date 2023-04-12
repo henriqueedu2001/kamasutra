@@ -1,10 +1,9 @@
 /* módulo karatsuba
    recebe inteiros X e Y (8 bits) e retorna o produto Z = X*Y (16 bits)
 */
-module karatsuba(X, Y, state, Z);
+module karatsuba(X, Y, Z);
     input [7:0] X; // fator X da multiplicação (8 bits)
     input [7:0] Y; // fator X da multiplicação (8 bits)
-    input [1:0] state; // Estado da FMS
     output [15:0] Z; // produto Z (16 bits)
     
     wire [9:0] A; // fator A do karatsuba
@@ -14,20 +13,36 @@ module karatsuba(X, Y, state, Z);
 
     wire [9:0] DE; // produto D*E (10 bits)
     
-    // Parametros de estado
+    // parametros de estado
     parameter [2:0] s0 = 3'b000, s1 = 3'b001, s2 = 3'b010, s3 = 3'b011, s4 = 3'b100;
+    reg[2:0] state, next_state; // variaveis de estado 
+
+    wire clock; // clock
+	clock_gen clk (.clock(clock));
+
+    always@(posedge clock) begin
+		state <= next_state; // mudanca de estados 
+		// proximos estados
+		case(state)
+			s0: next_state <= s1; 
+			s1: next_state <= s2;
+			s2: next_state <= s3; 
+			s3: next_state <= s4; 
+			s4: next_state <= s0; 
+		endcase
+	end
     
     always@(state) begin
     	case(state)
-    		s1: A_factor A_fac (X, Y, A); //Computa A e registra em A
+            s0: $display(“estado de IDLE”);
+    		s1: A_factor A_fac (X, Y, A); // computa A e registra em A
     		s2: begin
-    		B_factor B_fac (X, Y, B); //Computa B e registra em B
-		D_factor D_fac (X, D); // Computa D e registra em D
-		E_factor E_fac (Y, E); // Computa E e registra em E
-		end
-    		s3: ROM DE_prod ({D, E}, DE); // Computa D*E e registra em DE
-    		s4: assign Z = { 6'b000000, A} + {B[7:0], 8'b00000000} + {6'b000000, DE - (A+B)}; // Computa o resultado final a partir das parcelas obtidas nos outros estados
-    		
-	endcase
+    		    B_factor B_fac (X, Y, B); // computa B e registra em B
+		        D_factor D_fac (X, D); // computa D e registra em D
+		        E_factor E_fac (Y, E); // computa E e registra em E
+		        end
+    		s3: ROM DE_prod ({D, E}, DE); // computa D*E e registra em DE
+    		s4: assign Z = { 6'b000000, A} + {B[7:0], 8'b00000000} + {6'b000000, DE - (A+B)}; // computa o resultado final a partir das parcelas obtidas nos outros estados
+	    endcase
     end
 endmodule
