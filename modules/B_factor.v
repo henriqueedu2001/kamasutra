@@ -8,6 +8,6 @@ module B_factor (X, Y, B);
 	output [9:0] B; // fator B do karatsuba (10 bits)
 
 	// acessa a memória rom para calcular Xhigh*Yhigh
-	ROM rom ({1'b0, X[7:4], 1'b0, Y[7:4]}, B);
+	ROM rom2 ({1'b0, X[7:4], 1'b0, Y[7:4]}, B);
 
 endmodule

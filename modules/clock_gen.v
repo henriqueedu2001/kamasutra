@@ -1,14 +1,10 @@
-`timescale 1ns/1ps
+`timescale 1ns/100ps
+/* Módulo gerador do clocl*/
+module clock_gen(clock);
+output reg clock;
+initial 
+    #5 clock = 1;
+always 
+    #50 clock = ~clock;
 
-module clock_gen(clk);
-    output clk;
-    reg clk;
-
-    initial begin
-        clk = 0;
-    end
-
-    always begin
-        #100 clk = ~clk;
-    end
 endmodule

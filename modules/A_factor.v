@@ -8,6 +8,6 @@ module A_factor (X, Y, A);
 	output [9:0] A; // fator A do karatsuba, (10 bits)
 
 	// acessa a memória rom para calcular Xlow*Ylow
-	ROM rom ({1'b0, X[3:0], 1'b0, Y[3:0]}, A);
+	ROM rom1 ({1'b0, X[3:0], 1'b0, Y[3:0]}, A);
 
 endmodule
