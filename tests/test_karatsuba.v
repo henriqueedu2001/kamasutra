@@ -17,9 +17,9 @@ module test_karatsuba;
 	
 	// testa os produtos X*Y para diversos valores de X e Y
 	initial begin
-		X = 8'b00010000;
-        Y = 8'b00010000;
-		reset = 1'b0;
+		X = 8'b00011001;
+        Y = 8'b00010101;
+		reset = 1'b1;
 		$monitor ("X = %D; Y = %D; X*Y = %D", X, Y, Z);
 		#100;
 	end
